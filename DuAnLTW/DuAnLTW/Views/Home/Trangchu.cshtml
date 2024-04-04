@@ -1,0 +1,182 @@
+﻿@model IEnumerable<DuAnLTW.Models.Product>
+
+@{
+    ViewBag.Title = "Trangchu";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<link href="~/Content/Chuyendong.css" rel="stylesheet" />
+<link href="~/Content/fontawesome-free-6.2.1-web/css/all.css" rel="stylesheet">
+<link href="~/Content/fontawesome-free-6.2.1-web/css/v4-shims.css" rel="stylesheet">
+
+<div class="row">
+    <div id="div-content" style="width:40%;margin:auto">
+        <div class="slideshow-container" style="background-color:white">
+            <h2 style="text-align:center">SẢN PHẨM MỚI</h2>
+
+            <div class="mySlides fade" style="text-align:center">
+                <a href="/CustomerProducts/Details/9">
+                    <img src="~/Images/7up.jpg" style="width:100%">
+                </a>
+            </div>
+
+            <div class="mySlides fade">
+                <a href="/CustomerProducts/Details/20">
+                    <img src="~/Images/Huggies.jpg" style="width: 100%; max-height: 100% ">
+                </a>
+            </div>
+
+            <div class="mySlides fade">
+                <a href="/CustomerProducts/Details/30">
+                    <img src="~/Images/Khanmat.jpg" style="width: 100%; max-height: 100% ">
+                </a>
+            </div>
+            <div class="mySlides fade">
+                <a href="/CustomerProducts/Details/23">
+                    <img src="~/Images/Merries.jpg" style="width: 100%; max-height: 100% ">
+                </a>
+            </div>
+            <div class="mySlides fade">
+                <a href="/CustomerProducts/Details/28">
+                    <img src="~/Images/Gangtay.jpg" style="width: 100%; max-height: 100% ">
+                </a>
+            </div>
+
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <h2>SẢN PHẨM BÁN CHẠY</h2>
+
+    <div style="background-color:khaki; width: 1300px; text-align: center;height:215px ;padding:8px">
+        <marquee direction="right" scrolldelay="0" scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
+            <a href="/CustomerProducts/Details/7"><img src="~/Images/Milo.jpg" border="0" title="tiêu đề ảnh 1" width="200" height="200" /></a>
+            <a href="/CustomerProducts/Details/27"><img src="~/Images/Kemdanhrang.jpg" border="0" alt="tên ảnh 2" title="tiêu đề hình ảnh 2" width="200" height="200" /></a>
+            <a href="/CustomerProducts/Details/13"><img src="~/Images/Suatam.jpg" border="0" alt="tên ảnh 3" title="Tiêu đề ảnh 3" width="200" height="200" /></a>
+            <a href="/CustomerProducts/Details/10"><img src="~/Images/Cocacola.jpg" border="0" alt="tên ảnh 4" title="tiêu đề ảnh 4" width="200" height="200" /></a>
+            <a href="/CustomerProducts/Details/12"><img src="~/Images/Sting.jpg" border="0" alt="tên ảnh 5" title="tiêu đề ảnh 5" width="200" height="200" /></a>
+            <a href="/CustomerProducts/Details/4"><img src="~/Images/Cachua.jpg" border="0" alt="tên ảnh 6" title="tiêu đề ảnh 6" width="200" height="200" /></a>
+
+        </marquee>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top:1%">
+    <div class="col">
+        <div class="card">
+            <a href="/CustomerProducts/Food" style="text-decoration: none">
+                <img src="~/Images/Food.jpg" class="card-img-top">
+            </a>
+            <div class="card-body">
+                <a href="/CustomerProducts/Food" style="text-decoration: none">
+                    <h5 class="card-title">Thực Phẩm</h5>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <a href="/CustomerProducts/Drink" style="text-decoration: none">
+                <img src="~/Images/Drink.jpg" class="card-img-top">
+            </a>
+            <div class="card-body">
+                <a href="/CustomerProducts/Drink" style="text-decoration: none">
+                    <h5 class="card-title">Thức Uống</h5>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <a href="/CustomerProducts/HMP" style="text-decoration: none">
+                <img src="~/Images/HMP.jpg" class="card-img-top">
+            </a>
+            <div class="card-body">
+                <a href="/CustomerProducts/HMP" style="text-decoration: none">
+                    <h5 class="card-title">Hóa-Mỹ Phẩm</h5>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <a href="/CustomerProducts/Baby" style="text-decoration: none">
+                <img src="~/Images/Baby.jpg" class="card-img-top">
+            </a>
+            <div class="card-body">
+                <a href="/CustomerProducts/Baby" style="text-decoration: none">
+                    <h5 class="card-title">Tã Em Bé</h5>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <a href="/CustomerProducts/SH" style="text-decoration: none">
+                <img src="~/Images/SH.jpg" class="card-img-top">
+            </a>
+            <div class="card-body">
+                <a href="/CustomerProducts/SH" style="text-decoration: none">
+                    <h5 class="card-title">Đồ Sinh Hoạt</h5>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <a href="/CustomerProducts/VP" style="text-decoration: none">
+                <img src="~/Images/VP.jpg" class="card-img-top">
+            </a>
+            <div class="card-body">
+                <a href="/CustomerProducts/VP" style="text-decoration: none">
+                    <h5 class="card-title">Văn Phòng Phẩm</h5>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //khai báo biến slideIndex đại diện cho slide hiện tại
+    var slideIndex;
+    // KHai bào hàm hiển thị slide
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        slides[slideIndex].style.display = "block";
+        dots[slideIndex].className += " active";
+        //chuyển đến slide tiếp theo
+        slideIndex++;
+        //nếu đang ở slide cuối cùng thì chuyển về slide đầu
+        if (slideIndex > slides.length - 1) {
+            slideIndex = 0
+        }
+        //tự động chuyển đổi slide sau 5s
+        setTimeout(showSlides, 5000);
+    }
+    //mặc định hiển thị slide đầu tiên
+    showSlides(slideIndex = 0);
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+</script>

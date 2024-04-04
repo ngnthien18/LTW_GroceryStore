@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/mystyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <script src="https://kit.fontawesome.com/bdcac81df8.js" crossorigin="anonymous"></script>
+    <link href="~/Content/menu.css" type="text/css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-free-6.2.1-web/css/fontawesome.css" rel="stylesheet">
+    <link href="~/Content/fontawesome-free-6.2.1-web/css/brands.css" rel="stylesheet">
+    <link href="~/Content/fontawesome-free-6.2.1-web/css/solid.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg " style="background-color: #003768">
+        <div class="container-fluid" style="width:2500px">
+            <a style="color:white" class="navbar-brand" href="~/Home/Trangchu">Grocery Shop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="navbar-nav" style="list-style-type:none;">
+                    <li class="nav-item"> <a style="color:white;padding-top:20px" class="nav-link" href="~/Products/ProductList"><i class="fa-solid fa-list"></i>MUA HÀNG</a></li>
+                    <li class="nav-item">  <a style="color: white; padding-top: 20px" class="nav-link" href="~/Home/Lienhe"><i class="fa-sharp fa-solid fa-phone"></i>LIÊN HỆ</a></li>
+                    <li class="nav-item"> <a style="color: white; padding-top: 20px" class="nav-link" href="~/Home/Gioithieu"><i class="fa-solid fa-thumbs-up"></i>GIỚI THIỆU</a></li>
+                    @if (Session["UserName"] != null)
+                    {
+                        <li class="nav-item" style="color:yellow; font-size:large">@Session["UserName"]</li>
+                        <li class="nav-item">  <a style="color: white; padding-top: 20px" class="nav-link" href="~/Customers/Logout">ĐĂNG XUẤT</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">   <a style="color: white; padding-top: 20px" class="nav-link" href="~/Customers/Register">ĐĂNG KÝ</a></li>
+                        <li class="nav-item"><a style="color: white; padding-top: 20px" class="nav-link" href="~/Customers/LoginCus">ĐĂNG NHẬP</a></li>
+
+                    }
+                    <li class="nav-item dropdown">
+                        <a style="color: white; padding-top: 20px" class="nav-link" href="#"><i class="fa-solid fa-bars-progress" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"></i>QUẢN LÝ</a>
+                        <ul class="dropdown-menu" style="list-style-type:none;">
+                            <li><a style="color:white" class="nav-link" href="~/LoginUser/Index/?chon=1">SẢN PHẨM</a></li>
+                            <li><a style="color:white" class="nav-link" href="~/LoginUser/Index/?chon=2">LOẠI SẢN PHẨM</a></li>
+                            <li><a style="color:white" class="nav-link" href="~/LoginUser/Index/?chon=3">KHÁCH HÀNG</a></li>
+                            <li><a style="color:white" class="nav-link" href="~/LoginUser/Index/?chon=4">ĐƠN HÀNG</a></li>
+                            <li><a style="color:white" class="nav-link" href="~/LoginUser/Index/?chon=5">PHÂN QUYỀN</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="ms-auto">
+                    @Html.Action("BagCart", "ShoppingCart")
+                </div>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <div id="div-main">
+        <div id="div-containt" style="min-height:650px">
+            @RenderBody()
+        </div>
+    </div>
+    <div id="div-footer" style="height:100px">
+        <ul style="list-style-type: none; float: left; padding-right: 200px;padding-left:20px;">
+            <li style="font-weight:bolder">Các chính sách</li>
+            <li><div class="text-left"><a href="~/Home/Giaohang">Chính sách giao hàng</a></div></li>
+            <li><div class="text-left"><a href="~/Home/Khachhang">Chính sách khách hàng</a></div></li>
+            <li><div class="text-left"><a href="~/Home/Doitra">Chính sách đổi trả</a></div></li>
+        </ul>
+
+        <ul style="list-style-type: none; float: left; padding-right:200px">
+            <li style="font-weight:bolder">Liên hệ với chúng tôi</li>
+            <li>
+                <div class="text-left"><i class="fa-solid fa-phone-volume"></i> Hotline: 0999000000</div>
+            </li>
+            <li>
+
+                <div class="text-left"><i class="fa-solid fa-envelope"></i> Email: grocerystore@gmail.com</div>
+            </li>
+            <li><div class="text-left"><i class="fa-brands fa-facebook"></i> Facebook: Grocery Store</div></li>
+        </ul>
+
+
+
+
+        <p width="100%">
+            <b>
+                &copy; @DateTime.Now.Year - GROCERY STORE - GROUP 21 | HUFLIT
+            </b>
+        </p>
+    </div>
+
+</body>
+</html>

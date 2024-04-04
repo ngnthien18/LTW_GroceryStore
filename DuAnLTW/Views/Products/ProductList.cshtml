@@ -1,0 +1,70 @@
+﻿<!-- Thêm thư viện & thay đổi mô hình để sử dụng thư viện phân trang -->
+@model  IEnumerable<DuAnLTW.Models.Product>
+
+@{
+    ViewBag.Title = "Muahang";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<div class="col-2">
+    <div id="div-left">
+        <ul class="list-group" style="margin-top: 60px; float: left">
+            <li class="list-group-item" style="background-color: #003768;color:white"><h6s>DANH MỤC SẢN PHẨM</h6s></li>
+            <li class="list-group-item"><a href="/CustomerProducts/Food" style="text-decoration: none;color:black">THỰC PHẨM</a></li>
+            <li class="list-group-item"><a href="/CustomerProducts/Drink" style="text-decoration: none; color: black">THỨC UỐNG</a></li>
+            <li class="list-group-item"><a href="/CustomerProducts/HMP" style="text-decoration: none; color: black">HÓA  - MỸ PHẨM</a></li>
+            <li class="list-group-item"><a href="/CustomerProducts/Baby" style="text-decoration: none; color: black">TÃ EM BÉ</a></li>
+            <li class="list-group-item"><a href="/CustomerProducts/VP" style="text-decoration: none; color: black">VĂN PHÒNG PHẨM</a></li>
+            <li class="list-group-item"><a href="/CustomerProducts/SH" style="text-decoration: none; color: black">ĐỒ SINH HOẠT</a></li>
+        </ul>
+    </div>
+</div>
+<div style="margin: 10px auto; width: 100%;">
+    <h2 style="text-align: center">SẢN PHẨM</h2>
+    <hr />
+    <div style="border: 3px solid #ff6a00; height: 70px; text-align: center; padding: 15px;">
+        <!-- Đoạn thêm -->
+        @using (Html.BeginForm("ProductList", "Products", FormMethod.Get))
+        {
+            <table>
+                <tr>
+                    <td style="padding-left:15px">
+                        Tìm sản phẩm:
+                        <input style="width:210px" type="text" name="SearchString" placeholder="Nhập tên sản phẩm cần tìm" />
+                        <input type="submit" value="Tìm kiếm" class="btn btn-warning" />
+                    </td>
+                    <td style="padding-left:15px">
+                        Tìm giá:
+                        <input style="width:120px" type="number" name="min" placeholder="Giá từ" />
+                        <input style="width:120px" type="number" name="max" placeholder="Đến " />
+                        <input type="submit" value="Tìm giá" class="btn btn-info" />
+                    </td>
+
+                </tr>
+            </table>
+        }
+        <!--Kết thúc -->
+    </div>
+    <div class="row">
+        @foreach (var pro in Model)
+        {
+            <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3" style="padding:15px">
+                <div class="card">
+                    <a href="/CustomerProducts/Details/@pro.ProductID" style="text-decoration: none">
+                        <img src="~/Images/@pro.ImagePro" class="card-img-top" width="100">
+                    </a>
+                    <div class="card-footer">
+                        <a href="/CustomerProducts/Details/@pro.ProductID" style="text-decoration: none">
+                            <h5 class="card-title">@pro.NamePro</h5>
+                        </a>
+
+                        <p class="card-text">Giá: <b style="color:red">@pro.Price.ToString("#,##0").Replace(',', '.') VNĐ</b></p>
+                        <p style="text-align: center;">
+                            <a href="/ShoppingCart/AddToCart/@pro.ProductID" class="btn btn-danger" style="float:right"> Mua </a>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

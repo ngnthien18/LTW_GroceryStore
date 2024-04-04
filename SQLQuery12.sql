@@ -1,0 +1,118 @@
+﻿use DBGrocery1
+-- Bang AdminUser
+CREATE TABLE [dbo].[AdminUser] (
+ [ID] INT NOT NULL,
+ [NameUser] NVARCHAR (MAX) NULL,
+ [RoleUser] NVARCHAR (MAX) NULL,
+ [PasswordUser] NCHAR (50) NULL,
+ PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+--Bang Category
+CREATE TABLE [dbo].[Category] (
+ [Id] INT IDENTITY (1, 1) NOT NULL,
+ [IDCate] NCHAR (20) NOT NULL,
+ [NameCate] NVARCHAR (MAX) NULL,
+ PRIMARY KEY CLUSTERED ([IDCate] ASC)
+);
+--Bang Customer
+CREATE TABLE [dbo].[Customer] (
+ [IDCus] INT IDENTITY (1, 1) NOT NULL,
+ [NameCus] NVARCHAR (MAX) NULL,
+ [PhoneCus] NVARCHAR (15) NULL,
+ [EmailCus] NVARCHAR (MAX) NULL,
+ [UserName] varchar(50) null,
+ [Password] NCHAR(50) NOT NULL
+ PRIMARY KEY CLUSTERED ([IDCus] ASC)
+);
+--Bang Products
+CREATE TABLE [dbo].[Products] (
+ [ProductID] INT IDENTITY (1, 1) NOT NULL,
+ [NamePro] NVARCHAR (MAX) NULL,
+ [DecriptionPro] NVARCHAR (MAX) NULL,
+ [Category] NCHAR (20) NULL,
+ [Price] DECIMAL(18,2) NOT NULL,
+ [ImagePro] NVARCHAR (MAX) NULL,
+ PRIMARY KEY CLUSTERED ([ProductID] ASC),
+ CONSTRAINT [FK_Pro_Category] FOREIGN KEY ([Category]) REFERENCES [dbo].[Category]([IDCate])
+);
+--Bang OrderPro
+CREATE TABLE [dbo].[OrderPro] (
+ [ID] INT IDENTITY (1, 1) NOT NULL,
+ [DateOrder] DATE NULL,
+ [IDCus] INT NULL,
+ [AddressDeliverry] NVARCHAR (MAX) NULL,
+ PRIMARY KEY CLUSTERED ([ID] ASC),
+ FOREIGN KEY ([IDCus]) REFERENCES [dbo].[Customer] ([IDCus])
+);
+--Bang OrderDetail
+CREATE TABLE [dbo].[OrderDetail] (
+ [ID] INT IDENTITY (1, 1) NOT NULL,
+ [IDProduct] INT NULL,
+ [IDOrder] INT NULL,
+ [Quantity] INT NULL,
+ [UnitPrice] FLOAT (53) NULL,
+ PRIMARY KEY CLUSTERED ([ID] ASC),
+ FOREIGN KEY ([IDProduct]) REFERENCES [dbo].[Products] ([ProductID]),
+ FOREIGN KEY ([IDOrder]) REFERENCES [dbo].[OrderPro] ([ID])
+);
+
+-- Insert dữ liệu
+use DBGrocery1
+
+Insert into AdminUser (ID,NameUser, RoleUser, PasswordUser)
+	values (1,N'Võ Anh Khôi', N'Trưởng nhóm', '12345678')
+Insert into AdminUser (ID, NameUser, RoleUser, PasswordUser)
+	values (2,N'Phạm Hoàng Vĩnh Lộc', N'Thành viên', '23456789')
+Insert into AdminUser(ID,NameUser,RoleUser,PasswordUser)
+    values(3,N'Nguyễn Ngọc Anh Thiên',N'Thành viên','34567890')
+Insert into AdminUser(ID,NameUser,RoleUser,PasswordUser)
+    values(4,N'Mã Tuấn Tường',N'Thành viên','45678901')
+
+Insert into [dbo].[Category] values ('TP', N'THỰC PHẨM');
+Insert into [dbo].[Category] values ('TU', N'THỨC UỐNG');
+Insert into [dbo].[Category] values ('HM', N'HÓA - MỸ PHẨM');
+Insert into [dbo].[Category] values ('EB', N'TÃ EM BÉ');
+Insert into [dbo].[Category] values ('SH', N'ĐỒ SINH HOẠT');
+Insert into [dbo].[Category] values ('VP', N'VĂN PHÒNG PHẨM');
+
+Insert into [dbo].[Products] values (N'Xà Lách',N'Rau Xà Lách Xanh, Sạch (1 kg)','TP',20000,'Xalach.jpg');
+Insert into [dbo].[Products] values (N'Bắp Cải',N'Bắp Cải Xanh, Sạch (1 kg)','TP',25000,'Bapcai.jpg');
+Insert into [dbo].[Products] values (N'Cà Rốt',N'Cà Rốt Đà Lạt (500 g)','TP',15000,'Carot.jpg');
+Insert into [dbo].[Products] values (N'Cà Chua',N'Cà Chua Đỏ Tươi Ngon (500 g)','TP',19000,'Cachua.jpg');
+Insert into [dbo].[Products] values (N'Phở Bò',N'Phở Bò Chin-su Gói 74g','TP',8000,'Pho.jpg');
+Insert into [dbo].[Products] values (N'Mì SiuKay',N'Mì SiuKay 7 Cấp Độ, Hương Vị Bò','TP',8000,'Mitom.jpg');
+
+Insert into [dbo].[Products] values (N'Sữa Milo',N'Sữa Milo Hộp 180 ml (Lốc 4 Hộp)','TU',37000,'Milo.jpg');
+Insert into [dbo].[Products] values (N'TH True MILK',N'Sữa TH True MILK Hộp 180 ml (Lốc 4 Hộp)','TU',35000,'Thmilk.jpg');
+Insert into [dbo].[Products] values (N'7up',N'Nước Giải Khát 7up 320 ml (Lốc 6 Lon)','TU',55000,'7up.jpg');
+Insert into [dbo].[Products] values (N'CocaCola',N'Lốc 6 Lon CocaCola Loại 320 ml','TU',50000,'Cocacola.jpg');
+Insert into [dbo].[Products] values (N'Pepsi',N'Lốc 6 Lon Nước Ngọt Có Gas Pepsi 330 ml','TU',48000,'Pepsi.jpg');
+Insert into [dbo].[Products] values (N'Sting',N'Lốc 6 Lon Nước Uống Tăng Lực Sting Dâu Tây Đỏ 330 ml','TU',48000,'Sting.jpg');
+
+Insert into [dbo].[Products] values (N'Sữa Tắm',N'Sữa Tắm Gội Charme Cho Nam 500 ml Chính Hãng','HM',150000,'Suatam.jpg');
+Insert into [dbo].[Products] values (N'Sữa Rửa Mặt',N'Sữa Rửa Mặt Nivea Men Acne Detox Mud 100 g','HM',70000,'Suaruamat.jpg');
+Insert into [dbo].[Products] values (N'Xà Bông Lifeboy',N'Xà Bông Cục Lifebuoy Bảo Vệ Vượt Trội 90 g','HM',13000,'Xaphong.jpg');
+Insert into [dbo].[Products] values (N'Nước Rửa Chén',N'2 Chai Nước Rửa Chén Sunlight 750 g','HM',40000,'Ruachen.jpg');
+Insert into [dbo].[Products] values (N'Nước Xả Vải',N'Nước Xả Vải Downy Làn Gió Mát Túi 3 l','HM',205000,'Xavai.jpg');
+Insert into [dbo].[Products] values (N'Nước Lau Sàn',N'Sunlight Lau Sàn Tinh Dầu Thiên Nhiên Hoa Lily, Can 3.6 kg','HM',90000,'Lausan.jpg');
+
+Insert into [dbo].[Products] values (N'Tã Bobby',N'Combo 3 Gói Bỉm Tã Quần Bobby','EB',300000,'Bobby.jpg');
+Insert into [dbo].[Products] values (N'Tã Huggies',N'1 Gói Bỉm Tã Quần Huggies','EB',100000,'Huggies.jpg');
+Insert into [dbo].[Products] values (N'Tã Pampers',N'Tã Quần Pampers Giữ Dáng, Chống Xệ Gói Tiết Kiệm Size M 40 Miếng 7-12 kg','EB',150000,'Pampers.jpg');
+Insert into [dbo].[Products] values (N'Tã Molfix',N'Tã Quần Molfix Size XXXL 24 Miếng, Khuyến Mãi 6 Miếng','EB',200000,'Molfix.jpg');
+Insert into [dbo].[Products] values (N'Tã Merries',N'Bỉm Tã Quần Merries Size M 58 Miếng (6-11 kg)','EB',300000,'Merries.jpg');
+Insert into [dbo].[Products] values (N'Tã Unidry',N'Tã Dán UniDry Size M 42 Miếng','EB',160000,'Unidry.jpg');
+
+Insert into [dbo].[Products] values (N'Dao Cạo Râu',N'Hộp Lưỡi Dao Cạo Râu Gillette Mach3 Turbo','SH',85000,'Caorau.jpg');
+Insert into [dbo].[Products] values (N'Bàn Chải',N'Bộ Bàn Chải Đánh Răng Mềm Mảnh Chăm Sóc Nướu Mua 2 Tặng 1','SH',40000,'Banchai.jpg');
+Insert into [dbo].[Products] values (N'Kem Đánh Răng',N'Kem Đánh Răng P/S Bảo Vệ 123 Chăm Sóc Toàn Diện 230 g','SH',35000,'Kemdanhrang.jpg');
+Insert into [dbo].[Products] values (N'Găng Tay',N'Găng Tay Sợi Poly','SH',6000,'Gangtay.jpg');
+Insert into [dbo].[Products] values (N'Móc Treo Áo',N'Bộ 10 Móc Áo Quần Người Lớn Nhôm','SH',10000,'Mocao.jpg');
+Insert into [dbo].[Products] values (N'Khăn Lau Mặt',N'Khăn Lau Mặt Siêu Mềm Shine KL-24 30cm x 50cm (Giao Màu Ngẫu Nhiên)','SH',33000,'Khanmat.jpg');
+
+Insert into [dbo].[Products] values (N'Bút Bi',N'Bút Bi Mực Xanh Ánh Sáng MS B33 Đầu Bi 0.7mm (1 cây)','VP',3000,'Butbi.jpg');
+Insert into [dbo].[Products] values (N'Bút Chì',N'Bút Chì Gỗ 2B Thiên Long GP02','VP',3000,'Butchi.jpg');
+Insert into [dbo].[Products] values (N'Vở',N'Vở Kẻ Ngang Lò Xo Lined 80 Trang','VP',20000,'Vo.jpg');
+Insert into [dbo].[Products] values (N'Giấy Kiểm Tra',N'Giấy Kiểm Tra Campus (15 Tờ Đôi)','VP',20000,'Giaykiemtra.jpg');
+Insert into [dbo].[Products] values (N'Giấy Note',N'Combo 5 Tập Giấy Note 3x3cm','VP',40000,'Giaynote.jpg');
+Insert into [dbo].[Products] values (N'Bìa Đựng Giấy',N'Bìa 20 Lá Thiên Long','VP',38000,'Bia.jpg');

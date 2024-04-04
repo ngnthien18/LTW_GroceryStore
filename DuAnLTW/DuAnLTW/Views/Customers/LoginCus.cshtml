@@ -1,0 +1,46 @@
+﻿@model DuAnLTW.Models.Customer
+
+@{
+    ViewBag.Title = "LoginCus";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<h2 style="text-align: center">ĐĂNG NHẬP</h2>
+<div style="border: gray solid 3px;border-radius:20px;width:60%;margin:auto;padding:20px">
+        
+    <div style="margin:auto;">
+
+        <h2 style="color: red;">@ViewBag.ThongBao</h2>
+        @using (Html.BeginForm("LoginAcountCus", "Customers"))
+        {
+        @Html.AntiForgeryToken()
+        <div class="mb-3 mt-3">
+            <div>@Html.LabelFor(model => model.UserName)</div>
+            <div>@Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })</div>
+            <div>@Html.ValidationMessageFor(model => model.UserName)</div>
+        </div>
+        <div class="mb-3">
+            <div>@Html.LabelFor(model => model.Password)</div>
+            <div>@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })</div>
+            <div>@Html.ValidationMessageFor(model => model.Password)</div>
+            @if (ViewBag.ErrorInfo == null)
+            {
+                <p>@ViewBag.ErrorInfo</p>
+            }
+        </div>
+
+        <div>
+            <div>
+                <button type="submit" class="btn btn-primary">Đăng nhập</button>
+            </div>
+
+            <div>
+                <a href="@Url.Action("Register","Customers")">Đăng ký tài khoản</a>
+            </div>
+        </div>
+        }
+    </div>
+        
+    </div>
+
+
+

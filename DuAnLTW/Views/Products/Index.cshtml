@@ -1,0 +1,62 @@
+﻿@model IEnumerable<DuAnLTW.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<div style=" width: 100%; ">
+    <h2 style="text-align: center">THÔNG TIN SẢN PHẨM</h2>
+    <p>
+        @Html.ActionLink("TẠO MỚI", "Create", null, new
+        {
+            @class = "btn btn-primary"
+        })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                TÊN SẢN PHẨM
+            </th>
+            <th>
+                MÔ TẢ
+            </th>
+            <th>
+                GIÁ
+            </th>
+            <th>
+                HÌNH
+            </th>
+            <th>
+                LOẠI
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NamePro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DecriptionPro)
+        </td>
+        <td>
+            <p class="card-text" style="color:red"><b>@item.Price.ToString("#,##0").Replace(',', '.') VNĐ</b></p>
+        </td>
+        <td>
+            <img src="~/Images/@item.ImagePro" width="100" />
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category1.NameCate)
+        </td>
+        <td style="width:20%">
+            @Html.ActionLink("Sửa", "Edit", new { id = item.ProductID }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Chi tiết", "Details", new { id = item.ProductID }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Xóa", "Delete", new { id = item.ProductID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+        }
+    </table>
+</div>

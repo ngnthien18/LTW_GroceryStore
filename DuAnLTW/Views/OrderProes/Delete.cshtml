@@ -1,0 +1,51 @@
+﻿@model DuAnLTW.Models.OrderPro
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<div style="margin: 10px auto; width: 70%;">
+    <h3 style="text-align:center">
+        BẠN CÓ CHẮC CHẮN MUỐN XÓA ĐƠN HÀNG NÀY?
+    </h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                NGÀY ĐẶT HÀNG
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateOrder)
+            </dd>
+
+            <dt>
+                ĐỊA CHỈ
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AddressDeliverry)
+            </dd>
+
+            <dt>
+                TÊN KHÁCH HÀNG
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer.NameCus)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="XÓA" class="btn btn-danger" /> |
+                @Html.ActionLink("TRỞ LẠI", "Index")
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model DuAnLTW.Models.AdminUser
+
+@{
+    ViewBag.Title = "RegisterUser";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+
+<h2 style="text-align:center">PHÂN QUYỀN</h2>
+<div style="border:2px solid gray;border-radius:20px;padding:20px;width:60%;margin:auto;">
+    @using (Html.BeginForm("RegisterUser", "LoginUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+    {
+        @Html.AntiForgeryToken()
+        <div class="mb-3 mt-3" >Mã quản lý</div>
+        <div>@Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })</div>
+        <div>@Html.ValidationMessageFor(model => model.ID)</div>
+        if (ViewBag.ErrorRegister != null)
+        {
+            <div>@ViewBag.ErrorRegister</div>
+        }
+        <div class="mb-3 mt-3">Tên quản lý</div>
+        <div>@Html.EditorFor(model => model.NameUser, new { htmlAttributes = new { @class = "form-control" } })</div>
+        <div>@Html.ValidationMessageFor(model => model.NameUser)</div>
+
+        <div class="mb-3 mt-3">Chức vụ</div>
+        <div>@Html.EditorFor(model => model.RoleUser, new { htmlAttributes = new { @class = "form-control" } })</div>
+        <div>@Html.ValidationMessageFor(model => model.RoleUser)</div>
+
+        <div class="mb-3 mt-3">Mật khẩu</div>
+        <div>@Html.EditorFor(model => model.PasswordUser,new { htmlAttributes = new { @class = "form-control" } })</div>
+        <div>@Html.ValidationMessageFor(model => model.PasswordUser)</div>
+
+        <input type="submit" value="Phân quyền" class="btn btn-primary" style="margin-top:5px"/>
+    }
+
+</div>
